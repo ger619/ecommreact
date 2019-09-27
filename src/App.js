@@ -7,6 +7,9 @@ import ProductList from './components/ProductList';
 import Details from './components/Details';
 import Cart from './components/Cart';
 import Default from './components/Default';
+// import runtimeEnv from '@mars/heroku-js-runtime-env';
+
+
 
 function App() {
   return (
