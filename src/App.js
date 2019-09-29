@@ -8,7 +8,6 @@ import Details from './components/Details';
 import Cart from './components/Cart';
 import Default from './components/Default';
 
-
 function App() {
   return (
       <React.Fragment>
