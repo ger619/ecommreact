@@ -8,7 +8,7 @@ class ProductProvider extends Component {
       products: [],
       detailProduct: detailProduct,
       cart: [],
-      modalOpen: false,
+      modalOpen: true,
       modalProduct: detailProduct,
       cartSubTotal: 0,
       cartTax: 0,
@@ -41,9 +41,33 @@ class ProductProvider extends Component {
         });
       };
 
-   addToCart =() =>{
-           console.log('hello from Cart');
-       };
+   addToCart = id =>
+    {
+      let tempProducts = [...this.state.products];
+      const index = tempProducts.indexOf(this.getItem(id));
+      const product = tempProducts[index];
+      product.inCart = true;
+      product.count = 1;
+      const price = product.price;
+      product.total = price;
+      this.setState( ()=> 
+        {
+          return { products: tempProducts,cart:[...this.state.cart] };
+        }, ()=> console.log(this.state));
+    };
+
+
+    openModal = id => {
+      const product = this.getItem(id);
+      this.setState(() => {
+        return { modalProduct: product, modalOpen: true };
+      });
+    };
+    closeModal = () => {
+      this.setState(() => {
+        return { modalOpen: false };
+      });
+    };
    
     render() {
         return (
@@ -51,6 +75,8 @@ class ProductProvider extends Component {
                 ...this.state,
                 handleDetail: this.handleDetail, 
                 addToCart: this.addToCart, 
+                openModal: this.openModal,
+                closeModal: this.closeModal
 
             }}>
                 {this.props.children}
